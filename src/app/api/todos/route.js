@@ -30,3 +30,12 @@ export async function GET(request) {
 
     })
 }
+
+export async function POST(request) {
+    const newTodo = JSON.parse(request.body)
+    todos.push(newTodo)
+    return Response.json({
+        data : todos,
+        msg : "Todo added Successfully."
+    })
+}
