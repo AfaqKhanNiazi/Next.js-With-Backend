@@ -32,8 +32,14 @@ export async function GET(request) {
 }
 
 export async function POST(request) {
-    const newTodo = JSON.parse(request.body)
-    todos.push(newTodo)
+    const data = await request.json()
+    const obj = {
+      ...data,
+      isCompleted : false,
+      id : todos.length + 1,
+    };
+    todos.push(obj);
+    console.log("data from frontend or backend both=>", data);
     return Response.json({
         data : todos,
         msg : "Todo added Successfully."
